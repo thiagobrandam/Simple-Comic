@@ -724,9 +724,11 @@ static NSArray * allAvailableStringEncodings(void)
 	NSMutableArray * allAllowedFilesExtensions = [NSMutableArray arrayWithArray: [TSSTManagedArchive archiveExtensions]];
 	[allAllowedFilesExtensions addObjectsFromArray: [TSSTPage imageExtensions]];
     
-	if([addPagesModal runModalForTypes: allAllowedFilesExtensions] !=  NSCancelButton)
+    [addPagesModal setAllowedFileTypes:allAllowedFilesExtensions];
+    
+	if([addPagesModal runModal] !=  NSCancelButton)
 	{
-		TSSTManagedSession * session = [self newSessionWithFiles: [addPagesModal filenames]];
+		TSSTManagedSession * session = [self newSessionWithFiles: [addPagesModal URLs]];
 		[self windowForSession: session];
 	}
 }

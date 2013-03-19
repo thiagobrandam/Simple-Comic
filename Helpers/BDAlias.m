@@ -55,7 +55,7 @@ static Handle DataToHandle(CFDataRef inData)
     }
     
     len = CFDataGetLength(inData);
-    
+        
 	PtrToHand(CFDataGetBytePtr(inData), (Handle*)&handle, len);
 	
 	return handle;
